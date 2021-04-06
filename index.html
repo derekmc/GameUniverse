@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game Universe</title>
+    <!--script src="script/world.js"></script-->
+
+    <style>
+      body{
+       font-family: sans-serif;
+      }
+    </style>
+    <script>  
+      const GameList = [
+        ["Paddle 1", "./games/paddle/paddle.js"],
+        ["Paddle 2", "./games/paddle/paddle.js"],
+      ];
+      function Load(index){
+        let gametuple = GameList[index];
+        let path = gametuple[1];
+        import(path).then(game => {
+          game.init();
+        })
+      }
+      function Init(){
+        document.body.innerHTML = "";
+        document.body.innerHTML += "<h2> Games </h2>";
+        for(let i=0; i<GameList.length; ++i){
+          let game = GameList[i];
+          let name = game[0];
+          let path = game[1];
+          let html = `<span onclick='Load(${i});' title='${path}' style="cursor: pointer;"> <u>${name}</u> </span></br><br>`;
+          document.body.innerHTML += html;
+        }
+      }
+      window.addEventListener("load", Init);
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
