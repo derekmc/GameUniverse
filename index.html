@@ -7,24 +7,81 @@
     <style>
       body{
        font-family: sans-serif;
+       margin: 2px;
+       vertical-align: middle;
+      }
+      *{
+       vertical-align: middle;
+       text-align: center;
+      }
+      button{
+        margin: 3px;
+        background: white;
+        color: black;
+        font-size: 108%;
+        padding: 4px 8px;
+        border: 1px solid black;
+        border-radius: 3px;
       }
     </style>
     <script>  
       const GameList = [
-        ["Paddle 1", "./games/paddle/paddle.js"],
-        ["Paddle 2", "./games/paddle/paddle.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
+        ["Paddle", "./games/paddle/paddle.js"],
+        ["Spreadsheet", "./games/spreadsheet/spreadsheet.js"],
       ];
+      let ActiveGame = null;
       function Load(index){
         let gametuple = GameList[index];
         let path = gametuple[1];
         import(path).then(game => {
-          game.init();
+          ActiveGame = game;
+          game.Init();
         })
       }
-      function Init(){
+      function MainInit(){
         document.body.innerHTML = "";
-        document.body.innerHTML += "<h2> Games </h2>";
-        for(let i=0; i<GameList.length; ++i){
+        document.body.innerHTML += "<h2> Games </h2>"
+;        for(let i=0; i<GameList.length; ++i){
           let game = GameList[i];
           let name = game[0];
           let path = game[1];
@@ -32,7 +89,11 @@
           document.body.innerHTML += html;
         }
       }
-      window.addEventListener("load", Init);
+      function AppClose(){
+        ActiveGame.Close();
+        MainInit();
+      }
+      window.addEventListener("load", MainInit);
     </script>
   </head>
   <body>
